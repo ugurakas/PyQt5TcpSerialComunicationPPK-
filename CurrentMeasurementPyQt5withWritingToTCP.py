@@ -21,7 +21,6 @@ from PyQt5.QtCore import *
 
 
 #define Baud115200       CBR_115200
-cliv=0
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -39,8 +38,8 @@ class MainWindow(QMainWindow):
             self.serialPort.close()
             self.pushButtonConnect.setEnabled(True)
             self.pushButtonDisconnect.setEnabled(False)
-    def abc(self):
-          
+
+    def portConnect(self):
         number1 = 0
         number2 = 2000
         data = []
@@ -67,12 +66,6 @@ class MainWindow(QMainWindow):
                 W.send(str(number2).encode('utf-8'))
                 W.send(b' uA \n')
             time.sleep(0.02)
-                            
-    def portConnect(self):
-        recivedTcp = W.recvfrom(4096)
-        if recivedTcp != b'':
-            self.counter = 0
-            self.abc()
                       
         
 
@@ -475,7 +468,7 @@ class PPK2_API():
 
 
 
-host = socket.gethostname()
+host = socket.gethostname()     # I chose as a port lister hercules_3-2-8 in the part
 port = 12345                   # The same port as used by the server
 W = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 W.connect((host, port))    
@@ -496,7 +489,7 @@ ppk2_test = PPK2_API("dev\ttpyUSB0")  # Write your own serialPortserial port wil
 ppk2_test.get_modifiers()
 ppk2_test.use_ampere_meter()    #you can change the measurement mod by changing this section
 ppk2_test.set_source_voltage(3300)  # set source voltage in mV
-ppk2_test.toggle_DUT_power("ON")  # disable DUT power
+ppk2_test.toggle_DUT_power("OFF")  # disable DUT power
 ppk2_test.start_measuring()  # start measuring
 
     # measurements are a constant stream of bytes
