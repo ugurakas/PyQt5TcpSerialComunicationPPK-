@@ -1,6 +1,5 @@
 """
-This python API is written for use with the Nordic Semiconductor's Power Profiler Kit II (PPK 2).
-The PPK2 uses Serial communication.
+This python API is written by Ugur Akas to appyling mass production error control
 The official nRF Connect Power Profiler was used as a reference: https://github.com/NordicSemiconductor/pc-nrfconnect-ppk
 """
 
